@@ -23,7 +23,7 @@ To avoid creating a new Foundry user account per player — and to prevent exces
 
 ## Installation
 
-Install using the module manifest URL via Foundry’s **Install Module** interface.
+Install using the module manifest URL `https://raw.githubusercontent.com/lycanknt/moonfang-chat/main/module.json` via Foundry’s **Install Module** interface.
 
 ## Intended Use
 
