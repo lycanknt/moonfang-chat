@@ -1,0 +1,23 @@
+{
+  "id": "moonfang-chat",
+  "title": "Moonfang Chat",
+  "description": "Chat identity and speaker handling for Foundry VTT v13 (for P1–P6 slot users).",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Lucas"
+    }
+  ],
+  "license": "MIT",
+  "readme": "README.md",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "esmodules": [
+    "moonfang-chat.js"
+  ],
+  "url": "https://github.com/lycanknt/moonfang-chat",
+  "manifest": "https://raw.githubusercontent.com/lycanknt/moonfang-chat/main/module.json",
+  "download": "https://github.com/lycanknt/moonfang-chat/releases/latest/download/moonfang-chat.zip"
+}
