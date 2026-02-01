@@ -36,6 +36,27 @@ This module assumes a table setup where:
 
 It is **not intended** as a general-purpose chat overhaul module.
 
+## Possible Tweaks
+- Apply setting for the role "Players" instead
+Replace the PATRON_IDS constant and isPatron(user) function with the below:
+```
+function isTargetUser(user) {
+  return !!user && user.role === CONST.USER_ROLES.PLAYER;
+}
+```
+Update the two hooks:
+*Create hook*
+```
+const author = message.author;
+if (!isTargetUser(author)) return;
+```
+*Render hook*
+```
+const author = message.author;
+if (!isTargetUser(author)) return;
+```
+- Possibly have a setting menu to select which player should have this setting?
+
 ## Support
 
 This is a **personal project**, built primarily for my own Foundry VTT games.
