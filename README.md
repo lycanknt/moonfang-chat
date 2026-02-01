@@ -45,6 +45,7 @@ function isTargetUser(user) {
 }
 ```
 Update the two hooks:
+
 *Create hook*
 ```
 const author = message.author;
