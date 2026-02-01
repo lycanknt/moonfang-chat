@@ -1,17 +1,19 @@
-name: Build Foundry Module Zip
+name: Package Foundry Module
 
 on:
   release:
     types: [published]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        
       - name: Create module zip
         run: |
           zip -r moonfang-chat.zip \
