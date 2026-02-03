@@ -38,6 +38,7 @@ It is **not intended** as a general-purpose chat overhaul module.
 
 ## Possible Tweaks
 - Apply setting for the role "Players" instead
+
 Replace the PATRON_IDS constant and isPatron(user) function with the below:
 ```
 function isTargetUser(user) {
