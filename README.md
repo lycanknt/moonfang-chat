@@ -37,7 +37,7 @@ This module assumes a table setup where:
 It is **not intended** as a general-purpose chat overhaul module.
 
 ## Possible Tweaks
-- Apply setting for the role "Players" instead
+- Apply setting for the role "Players" instead of using specific user accounts.
 
 Replace the PATRON_IDS constant and isPatron(user) function with the below:
 ```
