@@ -1,8 +1,8 @@
 {
   "id": "moonfang-chat",
   "title": "Moonfang Chat",
-  "description": "Chat identity and speaker handling for Foundry VTT v13 (for P1–P6 slot users).",
-  "version": "1.0.0",
+  "description": "Chat identity and speaker handling for Foundry VTT v13-v14 (for P1-P6 slot users).",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Lucas"
@@ -12,7 +12,7 @@
   "readme": "README.md",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "14"
   },
   "esmodules": [
     "moonfang-chat.js"

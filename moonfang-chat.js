@@ -16,6 +16,17 @@ function getSnapshottedAlias(message) {
   return message.getFlag(MODULE_ID, FLAG_KEY);
 }
 
+function getMessageAuthor(message) {
+  return message.author ?? game.users?.get(message.user) ?? null;
+}
+
+function getHtmlElement(html) {
+  if (html instanceof HTMLElement) return html;
+  if (html?.[0] instanceof HTMLElement) return html[0];
+  if (typeof html?.get === "function") return html.get(0) ?? null;
+  return null;
+}
+
 /** Apply title/subtitle rules to the chat message header */
 function applyHeader(html, alias, patronId) {
   const title =
@@ -32,12 +43,27 @@ function applyHeader(html, alias, patronId) {
   if (subtitle && !subtitle.textContent?.trim()) subtitle.textContent = alias;
 }
 
+function renderPatronAlias(message, html) {
+  const root = getHtmlElement(html);
+  if (!root) return;
+
+  const author = getMessageAuthor(message);
+  const patronId = author?.name;
+  if (!PATRON_IDS.includes(patronId)) return;
+
+  const alias = getSnapshottedAlias(message) || getAlias(author);
+  if (!alias) return;
+
+  applyHeader(root, alias, patronId);
+  setTimeout(() => applyHeader(root, alias, patronId), 0);
+}
+
 /**
  * On chat mesasge creation - write to the message document (snapshot alias + force actor speaker)
  * Author-only to avoid "lacks permission to update ChatMessage" error for the other players.
  */
 Hooks.on("createChatMessage", (message) => {
-  const author = message.author;
+  const author = getMessageAuthor(message);
   if (!isPatron(author)) return;
   if (author?.id !== game.user.id) return;
 
@@ -61,17 +87,8 @@ Hooks.on("createChatMessage", (message) => {
 });
 
 /**
- * On chat message render - replace displayed patron slot name with alias.
- * Re-apply once after paint to handle late system renders.
+ * v13 uses renderChatMessage with jQuery HTML.
+ * v14 uses renderChatMessageHTML with HTMLElement HTML.
  */
-Hooks.on("renderChatMessageHTML", (message, html) => {
-  const author = message.author;
-  const patronId = author?.name;
-  if (!PATRON_IDS.includes(patronId)) return;
-
-  const alias = getSnapshottedAlias(message) || getAlias(author);
-  if (!alias) return;
-
-  applyHeader(html, alias, patronId);
-  setTimeout(() => applyHeader(html, alias, patronId), 0);
-});
+Hooks.on("renderChatMessage", renderPatronAlias);
+Hooks.on("renderChatMessageHTML", renderPatronAlias);
